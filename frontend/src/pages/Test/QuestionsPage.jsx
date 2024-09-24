@@ -1,15 +1,23 @@
+// This component is used to display stress tracking questions based on the user's age group.
+// It uses React Router to navigate to the result page after submitting the answers.
+
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Button, Form } from 'react-bootstrap';
 import './QuestionsPage.css';
 
+// This function component is used to render the questions page.
 const QuestionsPage = () => {
+    // Get the age group from the URL parameters.
     const { ageGroup } = useParams();
+
+    // Initialize the state variables to keep track of the current question index, user responses, and result.
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [responses, setResponses] = useState({});
     const [result, setResult] = useState(null);
     const navigate = useNavigate();
 
+    // Define the questions for each age group.
     const questions = {
         children: [
             "How do you feel when you have a lot of homework to do?",
@@ -23,6 +31,7 @@ const QuestionsPage = () => {
             "When your parents are upset or angry, how does that make you feel?",
             "Do you ever feel like your friends don’t understand you?",
         ],
+
         teenagers: [
             "Do you often feel overwhelmed by schoolwork or exams?",
             "How often do you feel pressure to fit in with friends or peers?",
@@ -35,6 +44,7 @@ const QuestionsPage = () => {
             "How often do you feel physically tired or drained, even after sleeping?",
             "How do you manage stress when you're balancing school, hobbies, and social life?",
         ],
+
         adults: [
             "How often do you feel overwhelmed by responsibilities at work or home?",
             "Do you find it difficult to relax after a long day?",
@@ -49,6 +59,7 @@ const QuestionsPage = () => {
         ],
     };
 
+    // This function is used to handle the change of answer for a question.
     const handleOptionChange = (questionIndex, value) => {
         setResponses((prevResponses) => ({
             ...prevResponses,
@@ -56,18 +67,21 @@ const QuestionsPage = () => {
         }));
     };
 
+    // This function is used to navigate to the next question.
     const handleNext = () => {
         if (currentQuestionIndex < questions[ageGroup].length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
     };
 
+    // This function is used to navigate to the previous question.
     const handlePrevious = () => {
         if (currentQuestionIndex > 0) {
             setCurrentQuestionIndex(currentQuestionIndex - 1);
         }
     };
 
+    // This function is used to calculate the stress level based on the user's answers.
     const calculateStress = (answers) => {
         const normalizedAnswers = answers.map(answer => {
             if (answer === "Never") return 9;
@@ -91,6 +105,7 @@ const QuestionsPage = () => {
         return { stressLevel, score: averageScore };
     };
 
+    // This function is used to handle the form submission.
     const handleSubmit = () => {
         const userAnswers = Object.values(responses);
         if (userAnswers.length === questions[ageGroup].length) {
@@ -102,9 +117,11 @@ const QuestionsPage = () => {
         }
     };
 
+    // This variable is used to check if an answer is selected for the current question.
     const isAnswerSelected = responses[currentQuestionIndex] !== undefined;
 
     return (
+        // The JSX code to render the questions page.
         <Container className="mt-5 question-container">
             <h3>Stress Tracking Questions for {ageGroup.charAt(0).toUpperCase() + ageGroup.slice(1)}</h3>
             <div className="question-box">
@@ -118,6 +135,7 @@ const QuestionsPage = () => {
                         onChange={() => handleOptionChange(currentQuestionIndex, "Never")}
                         checked={responses[currentQuestionIndex] === "Never"}
                     />
+
                     <Form.Check
                         type="radio"
                         label="Sometimes"
@@ -125,6 +143,7 @@ const QuestionsPage = () => {
                         onChange={() => handleOptionChange(currentQuestionIndex, "Sometimes")}
                         checked={responses[currentQuestionIndex] === "Sometimes"}
                     />
+
                     <Form.Check
                         type="radio"
                         label="Always"
