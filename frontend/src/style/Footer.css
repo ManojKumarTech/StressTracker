@@ -1,0 +1,68 @@
+/* Global Styles */
+html, body {
+    height: 100%; /* Ensure the body takes full height */
+    margin: 0; /* Reset default margin */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Make the body a flex container */
+}
+
+/* Main content style */
+.main-content {
+    flex: 1; /* Allow the main content to grow and take up available space */
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+  
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+}
+
+.footer-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.social-links a {
+    margin: 0 10px;
+    font-size: 24px;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #1da1f2; /* Twitter blue */
+}
+
+.footer-bottom {
+    border-top: 1px solid #777;
+    padding-top: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+    color: #bbb;
+}
