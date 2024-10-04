@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB-xHOY-hwmCvYCLR_a0pupGJqLB_ZZRyw",
+    apiKey: "",
     authDomain: "stresstracker-24bbc.firebaseapp.com",
     projectId: "stresstracker-24bbc",
     storageBucket: "stresstracker-24bbc.appspot.com",
