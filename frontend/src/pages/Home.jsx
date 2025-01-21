@@ -49,36 +49,39 @@ const Home = () => {
     };
 
     return (
+        <>
+        <Header/>
         <div style={styles.container}>
-            <Header />
-            <h1 style={styles.welcomeText}>Welcome, {username}!</h1>
-            <p style={styles.description}>
-                StressTracker is an application designed to help users manage and reduce stress 
-                effectively. Through personalized insights and a chatbot, you can assess your stress 
-                levels and receive tailored recommendations. Navigate to the testing page to check 
-                your stress levels or chat with our virtual assistant for quick support!
-            </p>
-            <div style={styles.buttonContainer}>
-                <button
-                    style={styles.button}
-                    onClick={() => navigate("/testing")}
-                    onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                    onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
-                >
-                    Go to Testing
-                </button>
-                <button
-                    style={styles.button}
-                    onClick={() => navigate("/chat")}
-                    onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                    onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
-                >
-                    Go to Chat
-                </button>
-            </div>
-            <Footer />
+        
+        <h1 style={styles.welcomeText}>Welcome, {username}!</h1>
+        <p style={styles.description}>
+            StressTracker is an application designed to help users manage and reduce stress 
+            effectively. Through personalized insights and a chatbot, you can assess your stress 
+            levels and receive tailored recommendations. Navigate to the testing page to check 
+            your stress levels or chat with our virtual assistant for quick support!
+        </p>
+        <div style={styles.buttonContainer}>
+            <button
+                style={styles.button}
+                onClick={() => navigate("/testing")}
+                onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
+                onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
+            >
+                Go to Testing
+            </button>
+            <button
+                style={styles.button}
+                onClick={() => navigate("/chat")}
+                onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
+                onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
+            >
+                Go to Chat
+            </button>
         </div>
-    );
+        <Footer />
+    </div>
+</>
+            );
 };
 
 export default Home;
