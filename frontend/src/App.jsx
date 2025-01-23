@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Testing from './pages/Test/Testing';
 import QuestionsPage from './pages/Test/QuestionsPage';
 import ResultPage from './pages/Test/ResultPage';
-import Chat from './pages/Test/Chat';
+// import Chat from './pages/Test/Chat';
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
         <Route path="/testing" element={<Testing />} />
         <Route path="/questions/:ageGroup" element={<QuestionsPage />} />
         <Route path='/result' element={<ResultPage />} />
-        <Route path='/chat' element={<Chat />} />
+        {/* <Route path='/chat' element={<Chat />} /> */}
       </Routes>
     </BrowserRouter>
   )

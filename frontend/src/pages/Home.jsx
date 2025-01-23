@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Home = () => {
-    // Get the username from the navigation state
     const location = useLocation();
     const navigate = useNavigate();
     const { username } = location.state || { username: "Guest" };
 
-    // Inline CSS styles
+    useEffect(() => {
+        const loadScript = (src) => {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = src;
+                script.async = true;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.body.appendChild(script);
+            });
+        };
+
+        // Load Botpress scripts
+        loadScript("https://cdn.botpress.cloud/webchat/v2.2/inject.js")
+            .then(() => loadScript("https://files.bpcontent.cloud/2025/01/23/15/20250123152048-K9C098PQ.js"))
+            .catch((err) => console.error("Failed to load Botpress scripts:", err));
+    }, []);
+
+    // Inline styles for buttons and layout
     const styles = {
         container: {
             textAlign: "center",
@@ -50,38 +67,47 @@ const Home = () => {
 
     return (
         <>
-        <Header/>
-        <div style={styles.container}>
-        
-        <h1 style={styles.welcomeText}>Welcome, {username}!</h1>
-        <p style={styles.description}>
-            StressTracker is an application designed to help users manage and reduce stress 
-            effectively. Through personalized insights and a chatbot, you can assess your stress 
-            levels and receive tailored recommendations. Navigate to the testing page to check 
-            your stress levels or chat with our virtual assistant for quick support!
-        </p>
-        <div style={styles.buttonContainer}>
-            <button
-                style={styles.button}
-                onClick={() => navigate("/testing")}
-                onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
-            >
-                Go to Testing
-            </button>
-            <button
-                style={styles.button}
-                onClick={() => navigate("/chat")}
-                onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
-            >
-                Go to Chat
-            </button>
-        </div>
-        <Footer />
-    </div>
-</>
-            );
+            <Header />
+            <div style={styles.container}>
+                <h1 style={styles.welcomeText}>Welcome, {username}!</h1>
+                <p style={styles.description}>
+                    StressTracker is an application designed to help users manage and reduce stress
+                    effectively. Through personalized insights and a chatbot, you can assess your stress
+                    levels and receive tailored recommendations. Navigate to the testing page to check
+                    your stress levels or chat with our virtual assistant for quick support!
+                </p>
+                <div style={styles.buttonContainer}>
+                    <button
+                        style={styles.button}
+                        onClick={() => navigate("/testing")}
+                        onMouseOver={(e) =>
+                            (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)
+                        }
+                        onMouseOut={(e) =>
+                            (e.target.style.backgroundColor = styles.button.backgroundColor)
+                        }
+                    >
+                        Go to Testing
+                    </button>
+                    <button
+                        style={styles.button}
+                        onClick={() => {
+                            alert("The AI is active. Feel free to chat with StressBot!");
+                        }}
+                        onMouseOver={(e) =>
+                            (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)
+                        }
+                        onMouseOut={(e) =>
+                            (e.target.style.backgroundColor = styles.button.backgroundColor)
+                        }
+                    >
+                        Go to Chat
+                    </button>
+                </div>
+            </div>
+            <Footer />
+        </>
+    );
 };
 
 export default Home;
