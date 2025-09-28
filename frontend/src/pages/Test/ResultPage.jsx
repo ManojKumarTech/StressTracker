@@ -1,6 +1,5 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 import './ResultPage.css';
 
 const ResultPage = () => {
@@ -12,9 +11,9 @@ const ResultPage = () => {
             <h3>Your Stress Level: {stressLevel}</h3>
             <p>Score: {score ? score.toFixed(2) : 'N/A'}</p>
             <p>
-                {stressLevel === "Low Stress" && "Great job! Keep up the good work!"}
-                {stressLevel === "Moderate Stress" && "Consider some relaxation techniques."}
-                {stressLevel === "High Stress" && "It might be helpful to talk to someone."}
+                {stressLevel === "Low" && "Great job! Keep up the good work!"}
+                {stressLevel === "Moderate" && "Consider some relaxation techniques."}
+                {stressLevel === "High" && "It might be helpful to talk to someone."}
             </p>
         </Container>
     );
